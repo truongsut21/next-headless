@@ -9,12 +9,12 @@ import {
   Card,
   CardAction,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
 import { formatDate } from "@/lib/utils";
+import HeroBanner from "@/components/ui/HeroBanner";
 
 export default async function HomePage() {
   const { data } = await client.query<{
@@ -29,8 +29,9 @@ export default async function HomePage() {
 
   return (
     <main className="p-8">
+      <HeroBanner posts={posts.slice(0, 5)} />
       <h1 className="text-2xl font-bold mb-4">Tin mới nhất</h1>
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 gap-4">
         {posts.map((post: Post) => (
           <Link key={post.id} href={post.slug}>
             <Card className="h-full">
