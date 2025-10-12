@@ -5,8 +5,16 @@ import emptyJpg from "@public/image/empty.png";
 import Link from "next/link";
 import client from "@/lib/apolloClient";
 import { Post } from "@/types/post";
-
-
+import {
+  Card,
+  CardAction,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { formatDate } from "@/lib/utils";
 
 export default async function HomePage() {
   const { data } = await client.query<{
@@ -24,15 +32,31 @@ export default async function HomePage() {
       <h1 className="text-2xl font-bold mb-4">Tin mới nhất</h1>
       <div className="grid grid-cols-3 gap-4">
         {posts.map((post: Post) => (
-          <Link key={post.id} href={post.slug} className="border rounded-lg p-3">
-            <h2 className="font-semibold">{post.title}</h2>
+          <Link key={post.id} href={post.slug}>
+            <Card className="h-full">
+              <CardHeader>
+                <CardTitle>{post.title}</CardTitle>
+                <Image
+                  src={post.featuredImage?.node?.sourceUrl || emptyJpg}
+                  alt={post.title}
+                  width={500}
+                  height={300}
+                />
+                <CardContent>
+                  <div dangerouslySetInnerHTML={{ __html: post.excerpt }} />
+                </CardContent>
+                <CardAction>Xem thêm</CardAction>
+              </CardHeader>
 
-            <Image
-              src={post.featuredImage?.node?.sourceUrl || emptyJpg}
-              alt={post.title}
-              width={500}
-              height={300}
-            />
+              <CardFooter>
+                <p>
+                  {post.categories?.nodes
+                    .map((category) => category.name)
+                    .join(", ")}
+                </p>
+                <p>{formatDate(post.date)}</p>
+              </CardFooter>
+            </Card>
           </Link>
         ))}
       </div>
