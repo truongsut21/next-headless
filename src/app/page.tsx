@@ -28,10 +28,10 @@ export default async function HomePage() {
   const posts = data?.posts?.nodes || [];
 
   return (
-    <main className="p-8">
+    <main className="p-8 container">
       <HeroBanner posts={posts.slice(0, 5)} />
       <h1 className="text-2xl font-bold mb-4">Tin mới nhất</h1>
-      <div className="grid grid-cols-1 gap-4">
+      <div className="grid grid-cols-3 gap-4">
         {posts.map((post: Post) => (
           <Link key={post.id} href={post.slug}>
             <Card className="h-full">
