@@ -100,7 +100,8 @@ export default async function Post({ params }: Params) {
             width={800}
             height={500}
             className="rounded-lg w-full h-auto"
-            fetchPriority={"high"}
+            priority
+            fetchPriority="high"
           />
         </div>
       )}
