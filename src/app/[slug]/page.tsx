@@ -93,15 +93,16 @@ export default async function Post({ params }: Params) {
       <div className="text-gray-600 mb-4">{formattedDate}</div>
 
       {post.featuredImage?.node?.sourceUrl && (
-        <div className="mb-6">
+        <div className="mb-6 w-full overflow-hidden rounded-lg">
           <Image
             src={post.featuredImage.node.sourceUrl}
             alt={post.title}
-            width={800}
-            height={500}
-            className="rounded-lg w-full h-auto"
+            width={1200}
+            height={675}
+            className="w-full h-auto rounded-lg"
             priority
-            fetchPriority="high"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 80vw, 800px"
+            style={{ objectFit: "cover" }}
           />
         </div>
       )}
