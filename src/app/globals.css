@@ -122,4 +122,6 @@
 }
 
 
-
+pre.prism.line-numbers.lang-bash {
+    white-space: normal;
+}
