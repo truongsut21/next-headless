@@ -4,9 +4,10 @@ import type { Post } from "@/types/post";
 
 interface PostCardProps {
   post: Post;
+  index: number;
 }
 
-export default function PostCard({ post }: PostCardProps) {
+export default function PostCard({ post, index }: PostCardProps) {
   return (
     <div className="border rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition">
       <Link href={post.slug}>
@@ -17,7 +18,8 @@ export default function PostCard({ post }: PostCardProps) {
           height={300}
           className="w-full h-48 object-cover"
           sizes="(max-width: 768px) 100vw, 33vw"
-          priority={false}
+          fetchPriority={index < 2 ? 'high' : 'auto'}
+          priority={index < 2}
         />
       </Link>
       <div className="p-4">

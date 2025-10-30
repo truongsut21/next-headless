@@ -29,8 +29,8 @@ export default async function HomePage() {
       {/* <HeroBanner posts={posts.slice(0, 5)} /> */}
       <h1 className="text-2xl font-bold mb-4">Tin mới nhất</h1>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        {posts.map((post: Post) => (
-          <PostCard key={post.id} post={post} />
+        {posts.map((post: Post, index: number) => (
+          <PostCard key={post.id} post={post} index={index} />
         ))}
       </div>
     </main>
