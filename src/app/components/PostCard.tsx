@@ -7,6 +7,11 @@ interface PostCardProps {
 }
 
 export default function PostCard({ post }: PostCardProps) {
+
+    const excerpt: string = (post.excerpt || '')
+        .replace(/<figure\b[\s\S]*?<\/figure>/gi, '')
+        .replace(/<figure\b[^>]*\/>/gi, '')
+        .trim();
   return (
     <div className="border rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition">
       <Link href={post.slug}>
@@ -24,7 +29,7 @@ export default function PostCard({ post }: PostCardProps) {
         <h2 className="text-lg font-semibold mb-2">
           <Link href={post.slug}>{post.title}</Link>
         </h2>
-        <p className="text-gray-600 text-sm" dangerouslySetInnerHTML={{ __html: post.excerpt }} />
+        <p className="text-gray-600 text-sm" dangerouslySetInnerHTML={{ __html: excerpt }} />
       </div>
     </div>
   );
