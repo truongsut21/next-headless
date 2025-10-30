@@ -5,12 +5,16 @@ const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: 'http',
-        hostname: 'localhost',
+        protocol: "http",
+        hostname: "localhost",
       },
       {
-        protocol: 'http',
-        hostname: '103.200.20.76',
+        protocol: "https",
+        hostname: "nguyenhung.io",
+      },
+      {
+        protocol: "https",
+        hostname: "nguyenhung-io-prod.s3.vn-hcm-1.vietnix.cloud",
       },
     ],
   },
