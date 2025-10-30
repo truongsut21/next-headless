@@ -1,13 +1,23 @@
 import Link from "next/link";
+import Image from "next/image";
+import type { Post } from "@/types/post";
 
-export default function PostCard({ post }) {
+interface PostCardProps {
+  post: Post;
+}
+
+export default function PostCard({ post }: PostCardProps) {
   return (
     <div className="border rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition">
       <Link href={post.uri}>
-        <img
-          src={post.featuredImage?.node?.sourceUrl}
-          alt={post.title}
+        <Image
+          src={post.featuredImage?.node?.sourceUrl || '/image/empty.png'}
+          alt={post.title || 'Post image'}
+          width={800}
+          height={300}
           className="w-full h-48 object-cover"
+          sizes="(max-width: 768px) 100vw, 33vw"
+          priority={false}
         />
       </Link>
       <div className="p-4">
